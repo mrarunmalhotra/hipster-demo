@@ -16,39 +16,11 @@ service:
                   connectorRef: githubconnectorNew
                   gitFetchType: Branch
                   paths:
-                    - kubernetes-manifests.yaml/release
-                  branch: "main-patch "
+                    - release/kubernetes-manifests.yaml
+                    - release/istio-manifests.yaml
+                  branch: main-patch
               skipResourceVersioning: false
               enableDeclarativeRollback: false
       artifacts:
-        primary:
-          primaryArtifactRef: <+input>
-          sources:
-            - spec:
-                connectorRef: account.harnessImage
-                imagePath: hipster/golang
-                tag: <+input>
-                digest: ""
-              identifier: DockerArtifact
-              type: DockerRegistry
-      configFiles:
-        - configFile:
-            identifier: configFile
-            spec:
-              store:
-                type: Github
-                spec:
-                  connectorRef: githubconnectorNew
-                  gitFetchType: Branch
-                  paths:
-                    - .editorconfig
-                  branch: main-patch
-      hooks:
-        - preHook:
-            identifier: Hook
-            storeType: Inline
-            actions:
-              - FetchFiles
-            store:
-              content: testin
+        primary: {}
     type: Kubernetes
