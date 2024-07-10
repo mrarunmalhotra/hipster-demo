@@ -1,0 +1,5 @@
+service:
+  name: hipster
+  identifier: hipster
+  orgIdentifier: default
+  projectIdentifier: default_project
